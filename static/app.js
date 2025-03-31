@@ -28,22 +28,6 @@ let highlightedMarkers = [];
 
 // Initialize Google Maps - this function is called by the Google Maps API
 function initMap() {
-    // Initialize DOM elements
-    searchInput = document.getElementById('search-input');
-    searchButton = document.getElementById('search-button');
-    resultContainer = document.getElementById('result-container');
-    stationNameElement = document.getElementById('station-name');
-    stationDistanceElement = document.getElementById('station-distance');
-    loadingSpinner = document.getElementById('loading-spinner');
-    metroTrain = document.getElementById('metro-train');
-
-    // Add event listeners
-    searchButton.addEventListener('click', handleSearchButtonClick);
-    searchInput.addEventListener('keypress', handleSearchInputKeypress);
-
-    // Ensure loading spinner is hidden initially
-    hideLoading();
-
     // Center on Hyderabad
     const hyderabad = { lat: 17.4344, lng: 78.4354 };
 
@@ -470,6 +454,33 @@ function animateMetroTrain() {
         console.error("Metro train element not found");
     }
 }
+
+// Initialize event listeners when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize DOM elements
+    searchInput = document.getElementById('search-input');
+    searchButton = document.getElementById('search-button');
+    resultContainer = document.getElementById('result-container');
+    stationNameElement = document.getElementById('station-name');
+    stationDistanceElement = document.getElementById('station-distance');
+    loadingSpinner = document.getElementById('loading-spinner');
+    metroTrain = document.getElementById('metro-train');
+    
+    // Add event listeners
+    if (searchButton) {
+        searchButton.addEventListener('click', handleSearchButtonClick);
+    }
+    
+    if (searchInput) {
+        searchInput.addEventListener('keypress', handleSearchInputKeypress);
+    }
+    
+    // Start train animation periodically
+    setInterval(animateMetroTrain, 10000);
+    
+    // Initial train animation
+    setTimeout(animateMetroTrain, 1000);
+});
 
 // Initialize map when Google Maps API is loaded
 window.initMap = initMap;

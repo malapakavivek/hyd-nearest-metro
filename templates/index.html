@@ -72,8 +72,19 @@
         </footer>
     </div>
     
+    <!-- Define initMap function before loading Google Maps API -->
+    <script>
+        // Make initMap available globally before Google Maps API loads
+        window.initMap = function() {
+            // This is just a placeholder that will be replaced by the actual initMap in app.js
+            console.log("initMap placeholder called");
+        };
+    </script>
+    
+    <!-- Load app.js before Google Maps API -->
+    <script src="static/app.js"></script>
+    
     <!-- Google Maps API with callback -->
     <script src="https://maps.googleapis.com/maps/api/js?key={{ api_key }}&libraries=places&callback=initMap" async defer></script>
-    <script src="app.js"></script>
 </body>
 </html>
