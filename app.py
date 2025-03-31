@@ -7,11 +7,14 @@ from dotenv import load_dotenv
 # Load environment variables from .env file
 load_dotenv()
 
-app = Flask(__name__, static_folder='static')
+app = Flask(__name__, 
+            static_folder='static',
+            static_url_path='/static',
+            template_folder='templates')
 CORS(app)
 
-# Get Google Maps API key from environment variables
-GOOGLE_MAPS_API_KEY = os.getenv('GOOGLE_MAPS_API_KEY')
+# Get Google Maps API key from environment variables or use a default one for demo
+GOOGLE_MAPS_API_KEY = os.getenv('GOOGLE_MAPS_API_KEY', 'AIzaSyDtE4YMzNOC4VBBkEHx7M8nU0fe7ShjSxs')
 
 # Metro station data
 metro_stations = [
@@ -99,7 +102,7 @@ def find_closest_station(location, stations):
 @app.route('/')
 def index():
     # Pass the Google Maps API key to the template
-    return render_template('index.html', api_key='AIzaSyDtE4YMzNOC4VBBkEHx7M8nU0fe7ShjSxs')
+    return render_template('index.html', api_key=GOOGLE_MAPS_API_KEY)
 
 @app.route('/<path:path>')
 def static_files(path):
