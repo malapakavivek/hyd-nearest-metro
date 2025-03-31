@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hyderabad Metro Finder</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-box">
+                <h1>HYDERABAD METRO FINDER</h1>
+                <div class="train-track">
+                    <div id="metro-train" class="metro-train">
+                        <img src="images/pixel-train.gif" alt="Metro Train">
+                    </div>
+                </div>
+                <div class="pixel-decoration"></div>
+            </div>
+            <div class="search-container">
+                <input type="text" id="search-input" placeholder="Search for a location...">
+                <button id="search-button">SEARCH</button>
+            </div>
+        </header>
+        
+        <div class="line-legend">
+            <div class="legend-item">
+                <div class="legend-color blue"></div>
+                <span>Blue Line</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color red"></div>
+                <span>Red Line</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color green"></div>
+                <span>Green Line</span>
+            </div>
+        </div>
+        
+        <div class="map-container">
+            <div class="pixel-border">
+                <div id="map"></div>
+            </div>
+        </div>
+        
+        <div class="metro-line-decoration">
+            <div class="metro-circle red"></div>
+            <div class="metro-circle green"></div>
+            <div class="metro-circle blue"></div>
+        </div>
+        
+        <div id="result-container" class="result-container">
+            <h2>NEAREST METRO STATION</h2>
+            <div class="result-card">
+                <div id="station-name" class="station-name">Loading...</div>
+                <div id="station-distance" class="station-distance"></div>
+                <div class="station-info">
+                    <p>Line: <span class="blue-line">Blue Line</span></p>
+                </div>
+            </div>
+        </div>
+        
+        <div id="loading-spinner">
+            <div class="spinner"></div>
+        </div>
+        
+        <footer>
+            <p>Made with <span class="heart">♥</span> in Hyderabad</p>
+        </footer>
+    </div>
+    
+    <!-- Google Maps API with callback -->
+    <script src="https://maps.googleapis.com/maps/api/js?key={{ api_key }}&libraries=places&callback=initMap" async defer></script>
+    <script src="app.js"></script>
+</body>
+</html>
